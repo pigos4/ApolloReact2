@@ -1,6 +1,7 @@
 const Homes = require('../route/Home').default
 const Login = require('../route/Login').default;
 const SignUp = require ('./Signup').default;
+
  const route =[
     {
         path:"/xx",
@@ -13,7 +14,12 @@ const SignUp = require ('./Signup').default;
     {
         path:"/signup",
         component: SignUp
-    }
+    },
+    // {
+    //     private:"yes",
+    //     path:"/data",
+    //     component: Data
+    // }
     ]
     
 module.exports = route;

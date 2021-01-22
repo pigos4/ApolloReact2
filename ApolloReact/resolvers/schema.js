@@ -16,7 +16,13 @@ type Ciao{
 type Resp{
     response:String
 }
+type UserLogin{
+    id:String
+    username:String
+    status:String
+}
 
-type Mutation{addUser(name: String, username: String, password: String): Resp}
+type Mutation{addUser(name: String, username: String, password: String): Resp,
+loginUser(username: String, password: String): UserLogin}
 `; 
  module.exports = typeDefs;

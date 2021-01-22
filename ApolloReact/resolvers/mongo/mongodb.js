@@ -13,7 +13,6 @@ async function mongodbRequest(nameColl, nameDb, inputInsert, findAll, deleteOne)
         const db = clients.db(nameDb);
         const col = await db.collection(nameColl);
 
-
         if (findAll === undefined) {
             console.log(inputInsert.args, "inputargs")
             let psw = inputInsert.args.password;
@@ -30,14 +29,25 @@ async function mongodbRequest(nameColl, nameDb, inputInsert, findAll, deleteOne)
                 password: hash
             })
 
-            console.log(results.acknowledged,"results")
-            return(results.ops[0]._id?"addedd":"error")
-            
-           
+            console.log(results.acknowledged, "results")
+            return (results.ops[0]._id ? "addedd" : "error")
+
+
 
         } else if (findAll === "yes") {
-            const results = await col.find({}).toArray()
+
+            const results = await col.find({
+                args
+            }).toArray()
             //console.log(results, "results find all")
+            return results
+
+
+        } else if (findAll === "findOne") {
+            console.log(inputInsert.args, "argss");
+            const results = await col.findOne({username: inputInsert.args.username
+                }).toArray()
+            console.log(await results, "results find all")
             return results
 
 

@@ -6,7 +6,7 @@ var bcrypt = require('bcrypt'); //const pswbcrypt=require('./psw');
 
 
 function mongodbRequest(nameColl, nameDb, inputInsert, findAll, deleteOne) {
-  var uri, client, clients, db, col, psw, rounds, salt, hash, results, _results, _results2;
+  var uri, client, clients, db, col, psw, rounds, salt, hash, results, _results, _results2, _results3;
 
   return regeneratorRuntime.async(function mongodbRequest$(_context) {
     while (1) {
@@ -71,51 +71,78 @@ function mongodbRequest(nameColl, nameDb, inputInsert, findAll, deleteOne) {
           }
 
           _context.next = 34;
-          return regeneratorRuntime.awrap(col.find({}).toArray());
+          return regeneratorRuntime.awrap(col.find({
+            args: args
+          }).toArray());
 
         case 34:
           _results = _context.sent;
           return _context.abrupt("return", _results);
 
         case 38:
-          if (!(deleteOne != undefined)) {
-            _context.next = 43;
-            break;
-          }
-
-          _context.next = 41;
-          return regeneratorRuntime.awrap(col.deleteOne({
-            _id: ObjectID(deleteOne)
-          }));
-
-        case 41:
-          _results2 = _context.sent;
-          return _context.abrupt("return", "Deleted");
-
-        case 43:
-          _context.next = 52;
-          break;
-
-        case 45:
-          _context.prev = 45;
-          _context.t0 = _context["catch"](3);
-
-          if (!_context.t0) {
+          if (!(findAll === "findOne")) {
             _context.next = 51;
             break;
           }
 
-          return _context.abrupt("return", _context.t0);
+          console.log(inputInsert.args, "argss");
+          _context.next = 42;
+          return regeneratorRuntime.awrap(col.findOne({
+            username: inputInsert.args.username
+          }).toArray());
+
+        case 42:
+          _results2 = _context.sent;
+          _context.t0 = console;
+          _context.next = 46;
+          return regeneratorRuntime.awrap(_results2);
+
+        case 46:
+          _context.t1 = _context.sent;
+
+          _context.t0.log.call(_context.t0, _context.t1, "results find all");
+
+          return _context.abrupt("return", _results2);
 
         case 51:
-          console.log(_context.t0, "err");
+          if (!(deleteOne != undefined)) {
+            _context.next = 56;
+            break;
+          }
 
-        case 52:
+          _context.next = 54;
+          return regeneratorRuntime.awrap(col.deleteOne({
+            _id: ObjectID(deleteOne)
+          }));
+
+        case 54:
+          _results3 = _context.sent;
+          return _context.abrupt("return", "Deleted");
+
+        case 56:
+          _context.next = 65;
+          break;
+
+        case 58:
+          _context.prev = 58;
+          _context.t2 = _context["catch"](3);
+
+          if (!_context.t2) {
+            _context.next = 64;
+            break;
+          }
+
+          return _context.abrupt("return", _context.t2);
+
+        case 64:
+          console.log(_context.t2, "err");
+
+        case 65:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[3, 45]]);
+  }, null, null, [[3, 58]]);
 }
 
 module.exports = mongodbRequest; // const uri = "mongodb+srv://pigos4:DanielPiga123@mflix.hjuju.mongodb.net/mflix?retryWrites=true&w=majority";

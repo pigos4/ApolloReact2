@@ -29,6 +29,29 @@ module.exports = {
           }
         }
       });
+    },
+    loginUser: function loginUser(root, args, context, info) {
+      var resultFindUser;
+      return regeneratorRuntime.async(function loginUser$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              resultFindUser = mongo("Apollo", "Users", {
+                args: args
+              }, "findOne");
+              console.log(resultFindUser, "findOne");
+              return _context2.abrupt("return", {
+                id: 1,
+                username: "a",
+                status: "ok"
+              });
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      });
     }
   },
   Query: {
