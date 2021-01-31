@@ -52,6 +52,9 @@ export default function App() {
                 <li>
                   <Link to="/data">Data</Link>
                 </li>
+                <li>
+                  <Link to="/dato">Dato</Link>
+                </li>
               </ul>
             </nav>
 

@@ -27,7 +27,8 @@ export default function Mut() {
         onClick={() => console.log(data)} value="consolelog"
       ></input>{user.name}{user.username}{user.password}
       {loading ? <p>loading</p> : <p>done</p>}
-      {data?`User registered successfully ${data.addUser.response}"`:""}
+      {data?`${data.addUser.response}"`:""}
+      
     </>
   );
 }

@@ -2,59 +2,67 @@
 
 var mongo = require('./mongo/mongodb');
 
+var addUserSignUp = require('./mutation/signUpAddUser');
+
+var encrypt = require('./encrypt/enchrypt');
+
+var dato = require('./dato/dato');
+
+var postgresRequest = require('./postgres/postgres.js');
+
 module.exports = {
   Mutation: {
-    addUser: function addUser(root, args, context, info) {
-      var res;
-      return regeneratorRuntime.async(function addUser$(_context) {
+    addUser: addUserSignUp,
+    loginUser: function loginUser(root, args, context, info) {
+      var userSavedTodatabase;
+      return regeneratorRuntime.async(function loginUser$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              res = mongo("Apollo", "Users", {
-                args: args
+              _context.next = 2;
+              return regeneratorRuntime.awrap(postgresRequest("SELECT\n                username,\n                password\n            FROM public.\"Users\"\n            WHERE\n                username = '".concat(args.username, "' ")));
+
+            case 2:
+              userSavedTodatabase = _context.sent;
+
+              if (!(userSavedTodatabase.rows[0] === undefined)) {
+                _context.next = 7;
+                break;
+              }
+
+              return _context.abrupt("return", {
+                id: "",
+                username: "",
+                status: "error"
               });
-              _context.next = 3;
-              return regeneratorRuntime.awrap(res.then(function (x) {
-                return {
-                  response: x
-                };
-              }));
 
-            case 3:
-              return _context.abrupt("return", _context.sent);
+            case 7:
+              if (!userSavedTodatabase.rows[0]) {
+                _context.next = 9;
+                break;
+              }
 
-            case 4:
+              return _context.abrupt("return", {
+                id: userSavedTodatabase.rows[0].id,
+                username: userSavedTodatabase.rows[0].username,
+                status: "Logged"
+              });
+
+            case 9:
             case "end":
               return _context.stop();
           }
         }
       });
-    },
-    loginUser: function loginUser(root, args, context, info) {
-      var resultFindUser;
-      return regeneratorRuntime.async(function loginUser$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              resultFindUser = mongo("Apollo", "Users", {
-                args: args
-              }, "findOne");
-              console.log(resultFindUser, "findOne");
-              return _context2.abrupt("return", {
-                id: 1,
-                username: "a",
-                status: "ok"
-              });
-
-            case 3:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      });
     }
-  },
+  } // human(obj, args, context, info) {
+  //     return context.db.loadHumanByID(args.id).then(
+  //       userData => new Human(userData)
+  //     )
+  ,
   Query: {
+    dato: dato,
+    //{dato(obj, args, context, info){console.log(args);return {name:"ciao"}},
     ciao: function ciao() {
       return [{
         "id": 1,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { Link, Redirect } from "react-router-dom";
 import { useAuth } from "../context/auth";
@@ -17,24 +17,31 @@ const LOGIN_USER = gql`
 export default function Login(props) {
   const [loginUser, { data, loading }] = useMutation(LOGIN_USER);
   const [user, setUserLogin] = useState({username: "",  password: "",});
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [isError, setIsError] = useState(<></>);
+ // const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isError, setIsError] = useState(<>Inser username e password</>);
   const { setAuthTokens } = useAuth();
   //const referer = props.location.state.referer || '/';
-  const [idd ,setId] = useState("");
-if(data){
-  if (data.loginUser.status === 'ok') {console.log(data.loginUser.status,"status")
+  //const [idd ,setId] = useState("");
+  //data.loginUser.status
+  useEffect(() => {
+    if(data){if (data.loginUser.status==="error"){setIsError(<p>Error</p>);}else {setIsError(<p>Logged</p>); setAuthTokens(data.loginUser.username)};
+    }
+  },[data])
+  
+
   // console.log(result.data+"res.data")
   // setId(result.data[1]);
-   setAuthTokens(data.loginUser.username);
-  // setLoggedIn(true);
+  
+  //  setAuthTokens(data.loginUser.username);
+  //  console.log(data)
+   //setLoggedIn(true);
   // console.log("id", id)
- } 
- else if (data.loginUser.status === 'err') {
-  console.log('error')
-   setIsError(<p>Insert Username and password</p>);
-}
-}
+ 
+//  else if (data.loginUser.status === 'error') {
+//  console.log('error')
+//    // setIsError(true);
+
+// }
 
 // if (isError === true) {
 //   return <Redirect to={"/"} />;
@@ -59,7 +66,6 @@ if(data){
       ></input>{user.username}{user.password}
       {loading ? <p>loading</p> : <p>done</p>}
       {isError}
-      {/* {data?`Login ok ${data.addUser.response}"`:""} */}
 
       <Link to="/signup">Don t have an account?</Link>
     </>
