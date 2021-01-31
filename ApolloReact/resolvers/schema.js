@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server');
 const typeDefs = gql`type Query{
     ciao: [Ciao]
-    dato(name: String): Dato
+    dato(id: String): Dato
 }
 type User {
 id: ID
@@ -19,6 +19,8 @@ type Ciao{
 type Dato {
   
   name: String
+  info:String
+  Description:String
 }
 type Resp{
     response:String

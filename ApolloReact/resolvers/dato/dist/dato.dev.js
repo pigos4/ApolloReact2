@@ -8,15 +8,17 @@ module.exports = function _callee(obj, args, context, info) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
-          return regeneratorRuntime.awrap(postgRequ("SELECT \"ID\", \"Name\", \"Info\", \"Description\", \"Child\"\nFROM public.\"Dato\" WHERE \"ID\"=".concat(args.name, ";")));
+          console.log(args.id);
+          _context.next = 3;
+          return regeneratorRuntime.awrap(postgRequ("SELECT \"ID\", \"Name\", \"Info\", \"Description\", \"Child\"\nFROM public.\"Dato\" WHERE \"ID\"=".concat(args.id, ";")));
 
-        case 2:
+        case 3:
           reqFromDatabase = _context.sent;
-          reqFromDatabase;
-          console.log(reqFromDatabase.row);
+          console.log(reqFromDatabase.rows[0]);
           return _context.abrupt("return", {
-            name: "wee"
+            name: reqFromDatabase.rows[0].Name,
+            info: reqFromDatabase.rows[0].Info,
+            Description: reqFromDatabase.rows[0].Description
           });
 
         case 6:

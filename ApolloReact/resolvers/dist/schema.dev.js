@@ -1,7 +1,7 @@
 "use strict";
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["type Query{\n    ciao: [Ciao]\n    dato(name: String): Dato\n}\ntype User {\nid: ID\nname: String\nusername: String\npassword: String\n}\ntype Ciao{\n    id:ID\n    nome:String,\n    cognome:String\n}\n\n\ntype Dato {\n  \n  name: String\n}\ntype Resp{\n    response:String\n}\ntype UserLogin{\n    id:String\n    username:String\n    status:String\n}\n\ntype Mutation{addUser(name: String, username: String, password: String): Resp,\nloginUser(username: String, password: String): UserLogin}\n"]);
+  var data = _taggedTemplateLiteral(["type Query{\n    ciao: [Ciao]\n    dato(id: String): Dato\n}\ntype User {\nid: ID\nname: String\nusername: String\npassword: String\n}\ntype Ciao{\n    id:ID\n    nome:String,\n    cognome:String\n}\n\n\ntype Dato {\n  \n  name: String\n  info:String\n  Description:String\n}\ntype Resp{\n    response:String\n}\ntype UserLogin{\n    id:String\n    username:String\n    status:String\n}\n\ntype Mutation{addUser(name: String, username: String, password: String): Resp,\nloginUser(username: String, password: String): UserLogin}\n"]);
 
   _templateObject = function _templateObject() {
     return data;
