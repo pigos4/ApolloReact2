@@ -2,6 +2,7 @@ const mongo = require('./mongo/mongodb');
 const addUserSignUp = require('./mutation/signUpAddUser')
 const encrypt = require('./encrypt/enchrypt');
 const dato = require('./dato/dato');
+const crypto = require('./crypto/crypto');
 const postgresRequest = require('./postgres/postgres.js');
 module.exports = {
         Mutation: {
@@ -41,7 +42,7 @@ module.exports = {
     Query: {
         dato,
     //{dato(obj, args, context, info){console.log(args);return {name:"ciao"}},
-      
+        crypto,
         ciao: () => [{
             "id": 1,
             "nome": "Daniel",

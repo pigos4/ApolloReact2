@@ -2,12 +2,17 @@ const { gql } = require('apollo-server');
 const typeDefs = gql`type Query{
     ciao: [Ciao]
     dato(id: String): Dato
+    crypto(symb:String): Crypto
 }
 type User {
 id: ID
 name: String
 username: String
 password: String
+}
+type Crypto {
+    name:String
+    value : Float
 }
 type Ciao{
     id:ID

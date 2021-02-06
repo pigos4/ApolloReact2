@@ -55,6 +55,9 @@ export default function App() {
                 <li>
                   <Link to="/dato">Dato</Link>
                 </li>
+                <li>
+                  <Link to="/crypto">Crypto</Link>
+                </li>
               </ul>
             </nav>
 

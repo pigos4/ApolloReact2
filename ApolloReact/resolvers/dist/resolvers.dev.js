@@ -8,6 +8,8 @@ var encrypt = require('./encrypt/enchrypt');
 
 var dato = require('./dato/dato');
 
+var crypto = require('./crypto/crypto');
+
 var postgresRequest = require('./postgres/postgres.js');
 
 module.exports = {
@@ -63,6 +65,7 @@ module.exports = {
   Query: {
     dato: dato,
     //{dato(obj, args, context, info){console.log(args);return {name:"ciao"}},
+    crypto: crypto,
     ciao: function ciao() {
       return [{
         "id": 1,
