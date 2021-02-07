@@ -3,7 +3,7 @@ const Login = require('../route/Login').default;
 const SignUp = require ('./Signup').default;
 const Crypto = require ('./Crypto').default;
 const Dato = require ('./Dato').default;
-const List = require ('./List').default;
+const List = require ('./list/List').default;
  const route =[
     {
         path:"/xx",
