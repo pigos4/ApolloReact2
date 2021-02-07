@@ -14,16 +14,29 @@ module.exports = function _callee(obj, args, context, info) {
 
         case 3:
           res = _context.sent;
-          x = res.data.filter(function (obj) {
-            return obj.currency === args.symb;
-          });
-          console.log(x[0].currency, x[0].price);
+          x = res.data.find(function (x) {
+            return x.currency === args.symb.toUpperCase();
+          }); //console.log(res[x].currency,res[x].price)
+
+          console.log(x, "x");
+
+          if (!(x === undefined)) {
+            _context.next = 10;
+            break;
+          }
+
           return _context.abrupt("return", {
-            name: x[0].currency,
-            value: x[0].price
+            name: "error",
+            value: 0
           });
 
-        case 7:
+        case 10:
+          return _context.abrupt("return", {
+            name: x.currency,
+            value: x.price
+          });
+
+        case 11:
         case "end":
           return _context.stop();
       }

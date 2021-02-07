@@ -58,6 +58,9 @@ export default function App() {
                 <li>
                   <Link to="/crypto">Crypto</Link>
                 </li>
+                <li>
+                  <Link to="/list">List</Link>
+                </li>
               </ul>
             </nav>
 

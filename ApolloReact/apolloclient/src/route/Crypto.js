@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { gql, useMutation,  useLazyQuery } from "@apollo/client";
-
-
+import React, { useState, useEffect} from "react";
+import { gql, useLazyQuery } from "@apollo/client";
 
 export default function CRYPTO() {
+const [result,setresult]=useState({name:"",value:[]})
+const [callQuery,setcallQuery]=useState(false)
+function RenderResults(){
+    
+    return (<><p>Name:  {result.name} </p><ul>Value:{result.value.map((x,index)=>(<li key={index}>{x}</li>))}</ul></>)
+}
+
+
   const CRYPTO = gql`
   query crypto($symb: String) {
     crypto(symb: $symb) {
@@ -17,23 +23,26 @@ const [getFields, { loading, data }] = useLazyQuery(CRYPTO);
     symbol: undefined,
     
   });
-  if(data){
-      
-  }
-//   const [renderDataLoading, setrenderDataLoading] = useState(null);
-//   if(renderDataLoading===null)getFields({ variables: { id: inputsUser.id } })
+  useEffect(() => {
+    if(data){
+        console.log(data)
+        setresult({name:data.crypto.name,value:[data.crypto.value]})
+      }  
+
+  },[data,callQuery])
+  
 
  return (
      <>
+     Insert the simbol of the crypto to see the price in real time.<br/>
      <input type="text" onChange={(e)=>setinputsUser({symbol:e.target.value})}></input>
-     <input type="submit" onClick={()=>getFields({ variables: { symb: inputsUser.symbol } })}></input>
-
-     <input type="submit" onClick={()=>console.log(data) }></input>
-     
-     
-     
-     
-     
-     
+     <input type="submit" onClick={()=>{setcallQuery(true);getFields({ variables: { symb: inputsUser.symbol } })}}></input>
+     <RenderResults/>
+     {(loading)?<p>loading</p>:""}
      </>
  )}
+
+
+
+ 
+  
