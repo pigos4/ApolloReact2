@@ -1,6 +1,6 @@
 "use strict";
 
-var postgRequ = require('../postgres/postgres');
+var postgRequ = require('../mutation/postgres/postgres');
 
 module.exports = function _callee(obj, args, context, info) {
   var reqFromDatabase;

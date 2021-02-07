@@ -30,6 +30,9 @@ type Dato {
 type Resp{
     response:String
 }
+type Res{
+    response:String
+}
 type UserLogin{
     id:String
     username:String
@@ -37,6 +40,8 @@ type UserLogin{
 }
 
 type Mutation{addUser(name: String, username: String, password: String): Resp,
+
+addInput(name: String, price: Int, barcode: String): Res,
 loginUser(username: String, password: String): UserLogin}
 `; 
  module.exports = typeDefs;

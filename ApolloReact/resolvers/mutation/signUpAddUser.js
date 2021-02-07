@@ -1,5 +1,5 @@
-const encrypt = require('../encrypt/enchrypt');
-const postgresRequest = require('../postgres/postgres.js');
+const encrypt = require('./encrypt/enchrypt');
+const postgresRequest = require('./postgres/postgres.js');
 
 module.exports = async (root, args, context, info) => {
     let nameEnchrypted = await encrypt(args.name);

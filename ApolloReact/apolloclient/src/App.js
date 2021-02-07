@@ -61,6 +61,9 @@ export default function App() {
                 <li>
                   <Link to="/list">List</Link>
                 </li>
+                <li>
+                  <Link to="/records">Records</Link>
+                </li>
               </ul>
             </nav>
 

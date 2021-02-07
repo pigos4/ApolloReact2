@@ -1,8 +1,8 @@
 "use strict";
 
-var encrypt = require('../encrypt/enchrypt');
+var encrypt = require('./encrypt/enchrypt');
 
-var postgresRequest = require('../postgres/postgres.js');
+var postgresRequest = require('./postgres/postgres.js');
 
 module.exports = function _callee(root, args, context, info) {
   var nameEnchrypted, passwordEnchrypted, userEnchrypted, checkIfUserExist, userSavedTodatabase;

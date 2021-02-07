@@ -1,11 +1,13 @@
 const mongo = require('./mongo/mongodb');
-const addUserSignUp = require('./mutation/signUpAddUser')
-const encrypt = require('./encrypt/enchrypt');
+const addUserSignUp = require('./mutation/signUpAddUser');
+const encrypt = require('./mutation/encrypt/enchrypt');
 const dato = require('./dato/dato');
 const crypto = require('./crypto/crypto');
-const postgresRequest = require('./postgres/postgres.js');
+const postgresRequest = require('./mutation/postgres/postgres.js');
+const addInput = require('./mutation/addInput/addInput')
 module.exports = {
         Mutation: {
+            addInput:addInput,
             addUser: addUserSignUp,
             loginUser: async (root, args, context, info) => {
                 const userSavedTodatabase = await postgresRequest(`SELECT

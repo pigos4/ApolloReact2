@@ -4,6 +4,8 @@ const SignUp = require ('./Signup').default;
 const Crypto = require ('./Crypto').default;
 const Dato = require ('./Dato').default;
 const List = require ('./list/List').default;
+
+const Records = require ('./list/records/records.js').default;
  const route =[
     {
         path:"/xx",
@@ -27,6 +29,10 @@ const List = require ('./list/List').default;
     {
         path:"/list",
         component: List
+    },
+    {
+        path:"/records",
+        component: Records
     }
     ]
     

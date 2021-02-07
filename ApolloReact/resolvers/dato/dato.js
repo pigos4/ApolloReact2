@@ -1,4 +1,4 @@
-const postgRequ = require('../postgres/postgres');
+const postgRequ = require('../mutation/postgres/postgres');
 
 module.exports = async (obj, args, context, info) => {
     console.log(args.id)

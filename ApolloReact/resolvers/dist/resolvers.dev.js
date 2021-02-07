@@ -4,16 +4,19 @@ var mongo = require('./mongo/mongodb');
 
 var addUserSignUp = require('./mutation/signUpAddUser');
 
-var encrypt = require('./encrypt/enchrypt');
+var encrypt = require('./mutation/encrypt/enchrypt');
 
 var dato = require('./dato/dato');
 
 var crypto = require('./crypto/crypto');
 
-var postgresRequest = require('./postgres/postgres.js');
+var postgresRequest = require('./mutation/postgres/postgres.js');
+
+var addInput = require('./mutation/addInput/addInput');
 
 module.exports = {
   Mutation: {
+    addInput: addInput,
     addUser: addUserSignUp,
     loginUser: function loginUser(root, args, context, info) {
       var userSavedTodatabase;
