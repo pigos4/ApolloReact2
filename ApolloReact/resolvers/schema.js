@@ -3,6 +3,13 @@ const typeDefs = gql`type Query{
     ciao: [Ciao]
     dato(id: String): Dato
     crypto(symb:String): Crypto
+    records: [Records]
+}
+type Records{
+    nome:String
+      id:ID
+      barcode:String
+      price:Int
 }
 type User {
 id: ID

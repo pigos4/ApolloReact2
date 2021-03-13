@@ -1,7 +1,7 @@
 "use strict";
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["type Query{\n    ciao: [Ciao]\n    dato(id: String): Dato\n    crypto(symb:String): Crypto\n}\ntype User {\nid: ID\nname: String\nusername: String\npassword: String\n}\ntype Crypto {\n    name:String\n    value : Float\n}\ntype Ciao{\n    id:ID\n    nome:String,\n    cognome:String\n}\n\n\ntype Dato {\n  \n  name: String\n  info:String\n  Description:String\n}\ntype Resp{\n    response:String\n}\ntype Res{\n    response:String\n}\ntype UserLogin{\n    id:String\n    username:String\n    status:String\n}\n\ntype Mutation{addUser(name: String, username: String, password: String): Resp,\n\naddInput(name: String, price: Int, barcode: String): Res,\nloginUser(username: String, password: String): UserLogin}\n"]);
+  var data = _taggedTemplateLiteral(["type Query{\n    ciao: [Ciao]\n    dato(id: String): Dato\n    crypto(symb:String): Crypto\n    records: [Records]\n}\ntype Records{\n    nome:String\n      id:ID\n      barcode:String\n      price:Int\n}\ntype User {\nid: ID\nname: String\nusername: String\npassword: String\n}\ntype Crypto {\n    name:String\n    value : Float\n}\ntype Ciao{\n    id:ID\n    nome:String,\n    cognome:String\n}\n\n\ntype Dato {\n  \n  name: String\n  info:String\n  Description:String\n}\ntype Resp{\n    response:String\n}\ntype Res{\n    response:String\n}\ntype UserLogin{\n    id:String\n    username:String\n    status:String\n}\n\ntype Mutation{addUser(name: String, username: String, password: String): Resp,\n\naddInput(name: String, price: Int, barcode: String): Res,\nloginUser(username: String, password: String): UserLogin}\n"]);
 
   _templateObject = function _templateObject() {
     return data;

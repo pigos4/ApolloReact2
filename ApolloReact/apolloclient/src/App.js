@@ -1,9 +1,4 @@
-import {
-  ApolloProvider,
-  ApolloClient,
-  InMemoryCache,
-  HttpLink,
-} from "@apollo/client";
+import {  ApolloProvider,  ApolloClient,  InMemoryCache,  HttpLink,} from "@apollo/client";
 import {React,useState} from "react";
 import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
 import { AuthContext } from "./context/auth";
@@ -26,22 +21,15 @@ export default function App() {
         localStorage.setItem("tokens", JSON.stringify(data));
         setAuthTokens(data);
     }
-
-    // if (authTokens === undefined) {
-    //     xx = "Log in";
-
-    // } else {
-    //     xx = "Log out"
-    // }
   return (
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <ApolloProvider client={client}>
         <Router>
           <div>
             <nav>
-              <ul>
+              <ul className="ulContainer" >
                 <li>
-                  <Link to="/xx">Home</Link>
+                  <Link  to="/">Home</Link>
                 </li>
                 <li>
                   <Link to="/login">Login</Link>

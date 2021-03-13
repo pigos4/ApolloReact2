@@ -1,42 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { gql, useMutation,  useLazyQuery } from "@apollo/client";
-
-
+import { gql, useMutation, useLazyQuery } from "@apollo/client";
 
 export default function Home() {
   const DATO = gql`
-  query dato($id: String) {
-    dato(id: $id) {
-      name
-      info
-      Description
+    query dato($id: String) {
+      dato(id: $id) {
+        name
+        info
+        Description
+      }
     }
-  }
-`;
-const [getFields, { loading, data }] = useLazyQuery(DATO);
- const [inputsUser, setinputsUser] = useState({
+  `;
+
+  const [getFields, { loading, data }] = useLazyQuery(DATO);
+  const [inputsUser, setinputsUser] = useState({
     id: "36",
     name: "",
     description: "",
     extraInfo: "",
     child: [],
   });
-  const [renderDataLoading, setrenderDataLoading] = useState(null);
-  if(renderDataLoading===null)getFields({ variables: { id: inputsUser.id } })
 
- 
+  const [renderDataLoading, setrenderDataLoading] = useState(null);
+  if (renderDataLoading === null)
+    getFields({ variables: { id: inputsUser.id } });
+
   useEffect(() => {
-   
-    if (loading) {
-      setrenderDataLoading(
-        <>
-          <p>loading</p>
-        </>
-      );
-    } else {
-      setrenderDataLoading(<></>);
-    }
-   
+    loading
+      ? setrenderDataLoading(
+          <>
+            <p>loading</p>
+          </>
+        )
+      : setrenderDataLoading(<></>);
+
     if (data) {
       console.log(data.dato);
       setrenderDataLoading(
@@ -89,6 +86,11 @@ const [getFields, { loading, data }] = useLazyQuery(DATO);
     </>
   );
 }
+
+
+
+
+
 //   useEffect(() => {
 
 //    function ReqQuery(nameRequest){
