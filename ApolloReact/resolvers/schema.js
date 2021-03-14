@@ -45,10 +45,14 @@ type UserLogin{
     username:String
     status:String
 }
+type DeleteItem{
+    status:String
+}
 
 type Mutation{addUser(name: String, username: String, password: String): Resp,
 
 addInput(name: String, price: Int, barcode: String): Res,
-loginUser(username: String, password: String): UserLogin}
+loginUser(username: String, password: String): UserLogin,
+deleteitem(idd: String): DeleteItem}
 `; 
  module.exports = typeDefs;

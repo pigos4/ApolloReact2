@@ -53,24 +53,4 @@ module.exports = function _callee() {
       }
     }
   });
-}; // let row =await allRecordsFromDatabase.rows.map(async (e) => { return await objectDecrypted(e.name,e.price,e.barcode).then(x=>{return x})
-// }); 
-//    return [{name:"1",price:123,barcode:"ssxs"}]}
-//  allRecordsFromDatabase.rows.map(x=>
-//     console.log(encrypt(undefined,x.price))
-//     )
-//let decryptedFromDatabase=await allRecordsFromDatabase.rows.map(x=>{return {price:encrypt(undefined, x.price)}});
-//     {
-//     decryptedFromDatabase.push({id:x.id,
-//         name: await encrypt(undefined,x.name),
-//         barcode: encrypt(undefined,x.barcode),
-//         price: encrypt(undefined,x.price)
-//     })
-// }
-//console.log(await decryptedFromDatabase,"decripted from database")
-// [{
-//     nome:"we",
-//     id:"ee",
-//     barcode:"we",
-//     price:123
-// }]
+}; 
