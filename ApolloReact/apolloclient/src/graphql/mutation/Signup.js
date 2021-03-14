@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import { gql, useMutation } from "@apollo/client";
+import { Redirect } from "react-router-dom";
 
 const ADD_USER = gql`
   mutation($name: String!, $username: String!, $password: String!) {
@@ -13,9 +14,8 @@ export default function Mut() {
   const [addUser, { data, loading }] = useMutation(ADD_USER);
   const [user, setUser] = useState({ name: "", username: "", password: "" });
   return (
-    <>
-      <input
-        type="text"
+    <><div className="Container">      <input
+        type="text" className="smallContainer" 
         onChange={(e) =>
           setUser({
             name: e.target.value,
@@ -25,7 +25,7 @@ export default function Mut() {
         }
         placeholder="Name"
       ></input>
-      <input
+      <input className="smallContainer" 
         type="text"
         onChange={(e) => {
           setUser({
@@ -36,7 +36,7 @@ export default function Mut() {
         }}
         placeholder="Username"
       ></input>
-      <input
+      <input className="smallContainer" 
         type="password"
         onChange={(e) => {
           setUser({
@@ -47,18 +47,18 @@ export default function Mut() {
         }}
         placeholder="Password"
       ></input>
-      <input
+      <input className="smallContainer" 
         type="button"
         value="Submit"
         onClick={() => {
           addUser({ variables: user });
         }}
       ></input>
-      {user.name}
-      {user.username}
-      {user.password}
-      {loading ? <p>loading</p> : <p>done</p>}
-      {data ? `${data.addUser.response}"` : ""}
+      {loading ? <p>loading</p> : <p>Complite the form to sign up</p>}
+      {data ? <Redirect to={"/data"} /> : ""}
+      </div>
+
     </>
   );
 }
+//`${data.addUser.response}`;

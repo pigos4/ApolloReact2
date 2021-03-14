@@ -19,7 +19,7 @@ const Records = require ('./list/records/records.js').default;
         path:"/signup",
         component: SignUp
     },{
-        path:"/dato",
+        path:"/memo",
         component: Dato
     },
     {

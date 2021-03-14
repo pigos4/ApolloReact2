@@ -1,13 +1,18 @@
-import {  ApolloProvider,  ApolloClient,  InMemoryCache,  HttpLink,} from "@apollo/client";
-import {React,useState} from "react";
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  HttpLink,
+} from "@apollo/client";
+import { React, useState } from "react";
 import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
 import { AuthContext } from "./context/auth";
 import "./App.css";
 import route from "./route/route";
 import PrivateRoute from "./context/PrivateRoute";
-import Data from './route/Data';
-const Login = require('./route/Login').default;
-const SignUp = require ('./route/Signup').default;
+import Data from "./route/Data";
+const Login = require("./route/Login").default;
+const SignUp = require("./route/Signup").default;
 
 const RouteWithSubRoutes = require("./route/RouteWithSubRoutes").default;
 
@@ -18,57 +23,58 @@ const client = new ApolloClient({
 
 export default function App() {
   const [authTokens, setAuthTokens] = useState();
-    const setTokens = (data) => {
-        localStorage.setItem("tokens", JSON.stringify(data));
-        setAuthTokens(data);
+  const setTokens = (data) => {
+    localStorage.setItem("tokens", JSON.stringify(data));
+    setAuthTokens(data);
+  };
+
+  function Logout() {
+    return (
+      <>
+        ciao
+        <input
+          type="button"
+          onClick={() => setAuthTokens(undefined)}
+          value="Logout"
+        />
+      </>
+    );
+  }
+
+  function Access() {
+    const routes = [
+      {
+        path: "/login",
+        component: Login,
+      },
+      {
+        path: "/signup",
+        component: SignUp,
+      },
+    ];
+    const logout = {
+      path: "/logout",
+      component: Logout,
+    };
+
+    if (authTokens === undefined) {
+      return routes.map((routes, i) => (
+        <RouteWithSubRoutes key={i} {...routes} />
+      ));
+    } else {
+      return (
+        <>
+          <RouteWithSubRoutes {...logout} />
+        </>
+      );
     }
-
-    function Logout(){
-      return(<>ciao
-      <input type="button"  onClick={()=>setAuthTokens(undefined)} value="Logout" />
-      </>)
-    }
-
-function Access(){
-  const routes =[
-   
-    {
-        path:"/login",
-        component: Login
-    },
-    {
-        path:"/signup",
-        component: SignUp
-    }
-    ]
-const logout={
-  path:"/logout",
-  component: Logout
-};
- 
-   if(authTokens===undefined){
-return routes.map((routes, i) => (
-      <RouteWithSubRoutes key={i} {...routes} />
-    ))}else{ return(<><RouteWithSubRoutes {...logout}/></>)}
-
-
-
 
     // <><RouteWithSubRoutes path="/login" component= {Login} />
     // <RouteWithSubRoutes path="/signup" component= {SignUp} />
     // </>):(<><RouteWithSubRoutes path="/logout" component= {Logout} />
-    
+
     // </>);
-    
   }
-
-  
-
-
-  
-
-
-
 
   return (
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
@@ -76,29 +82,31 @@ return routes.map((routes, i) => (
         <Router>
           <div>
             <nav>
-              <ul className="ulContainer" >
+              <ul className="ulContainer">
                 <li>
-                  <Link  to="/">Home</Link>
+                  <Link to="/">Home</Link>
                 </li>
 
-{(authTokens===undefined)?(<><li>
-                  <Link to="/login">Login</Link>
-                </li>
-                <li>
-                  <Link to="/signup">Sign up</Link>
-                </li></>):<li>
-                  <Link to="/logout">Logout</Link>
-                </li>}
-
-                
-
-
+                {authTokens === undefined ? (
+                  <>
+                    <li>
+                      <Link to="/login">Login</Link>
+                    </li>
+                    <li>
+                      <Link to="/signup">Sign up</Link>
+                    </li>
+                  </>
+                ) : (
+                  <li>
+                    <Link to="/logout">Logout</Link>
+                  </li>
+                )}
 
                 <li>
                   <Link to="/data">Data</Link>
                 </li>
                 <li>
-                  <Link to="/dato">Dato</Link>
+                  <Link to="/memo">Memo</Link>
                 </li>
                 <li>
                   <Link to="/crypto">Crypto</Link>
@@ -113,14 +121,11 @@ return routes.map((routes, i) => (
             </nav>
 
             <Switch>
-            {route.map((route, i) => (
+              {route.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
               ))}
-            <PrivateRoute path="/data" component={Data} />
-            <Access/>
-              
-              
-              
+              <PrivateRoute path="/data" component={Data} />
+              <Access />
             </Switch>
           </div>
         </Router>

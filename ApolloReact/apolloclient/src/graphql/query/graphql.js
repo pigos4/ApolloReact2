@@ -16,8 +16,8 @@ export default function Users() {
   if (error) return <p>Error :(</p>;
 
   return data.test.map((res) => (
-    <p key={res.id}>
-      name:{res.name} surname:{res.surname}
+    <p key={res.id} >
+      <p className="smallContainer" >name:{res.name} surname:{res.surname}</p>
     </p>
   ));
 }

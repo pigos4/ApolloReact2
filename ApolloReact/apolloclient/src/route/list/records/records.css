@@ -1,0 +1,17 @@
+.par{background-color: rgb(193, 193, 251);
+
+display: flex;
+width: 50%;
+border: 1px solid;
+justify-content: flex-start;
+
+}
+.par > p {
+    width:inherit;
+    border: 1px solid;
+    background-color: aliceblue;
+    
+    
+
+
+}

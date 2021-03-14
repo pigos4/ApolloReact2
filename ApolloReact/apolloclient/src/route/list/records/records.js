@@ -1,5 +1,6 @@
 import { useQuery, gql, useMutation } from "@apollo/client";
 import { Redirect } from "react-router-dom";
+import './records.css';
 
 function Delete(props) {
   const DELETE_ITEM = gql`
@@ -50,11 +51,12 @@ export default function Records() {
   return (
     <>
       {data.records.map((res) => (
-        <p key={res.id}>
+        <p key={res.id} className="par">
           <Delete idd={res.id} />
-          nome:{res.nome}
-          id:{res.id}
-          Price:{res.price} Barcode:{res.barcode}
+          <p>Name:{res.nome}</p>
+          <p>id:{res.id}</p>
+
+          <p>Price:{res.price}</p> <p>Barcode:{res.barcode}</p>
         </p>
       ))}
     </>

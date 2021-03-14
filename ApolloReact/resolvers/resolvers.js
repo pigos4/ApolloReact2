@@ -19,12 +19,12 @@ module.exports = {
         crypto,
         test: () => [{
             "id": 1,
-            "name": "Test2",
-            "surname": "Test1"
+            "name": "Text",
+            "surname": "From"
         }, {
             "id": 2,
-            "name": "Test2",
-            "surname": "Test2"
+            "name": "Graphql",
+            "surname": "Query"
         }]
     }
 };

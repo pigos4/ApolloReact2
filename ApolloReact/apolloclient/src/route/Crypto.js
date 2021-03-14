@@ -47,7 +47,7 @@ export default function CRYPTO() {
       <div className="cryptoContainer">
         <div className="smallContainer">
           <h1>
-            Insert the simbol of the crypto to see the price in real time.
+            Insert the symbol of the crypto to see the price in real time.
           </h1>
           <br />
           <input

@@ -31,37 +31,38 @@ export default function Login(props) {
     }
   }, [data]);
 
-
   return (
     <>
-      <input
+    <div className="Container" >
+      <input className="smallContainer" 
         type="text"
         onChange={(e) => {
           setUserLogin({ username: e.target.value, password: user.password });
         }}
-        placeholder="username"
+        placeholder="Username" 
       ></input>
-      <input
+      <input className="smallContainer" 
         type="password"
         onChange={(e) => {
           setUserLogin({ username: user.username, password: e.target.value });
         }}
-        placeholder="password"
+        placeholder="Password"
       ></input>
-      <input
+      <input className="smallContainer" 
         type="button"
-        value="submit"
+        value="Submit"
         onClick={() => {
           loginUser({ variables: user });
         }}
       ></input>
-      
-      {loading ? <p>loading</p> : <p></p>}
+
+      {loading ? <p>Loading</p> : <p></p>}
       {isError}
       <br></br>
 
       <Link to="/signup">Don't have an account?</Link>
-      {(isError==="Logged")?<Redirect to={"/data"} />:""}
+      {isError === "Logged" ? <Redirect to={"/data"} /> : ""}
+      </div>
     </>
   );
 }

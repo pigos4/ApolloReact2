@@ -1,5 +1,9 @@
-const Mutation = require('../graphql/mutation/Signup').default;
+const Mutation = require("../graphql/mutation/Signup").default;
 
 export default function SignUp() {
-    return (<>Signup<Mutation/></>);
-  }
+  return (
+    <>
+      <Mutation />
+    </>
+  );
+}
