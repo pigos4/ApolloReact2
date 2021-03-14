@@ -5,8 +5,9 @@ import { AuthContext } from "./context/auth";
 import "./App.css";
 import route from "./route/route";
 import PrivateRoute from "./context/PrivateRoute";
-
 import Data from './route/Data';
+const Login = require('./route/Login').default;
+const SignUp = require ('./route/Signup').default;
 
 const RouteWithSubRoutes = require("./route/RouteWithSubRoutes").default;
 
@@ -21,6 +22,54 @@ export default function App() {
         localStorage.setItem("tokens", JSON.stringify(data));
         setAuthTokens(data);
     }
+
+    function Logout(){
+      return(<>ciao
+      <input type="button"  onClick={()=>setAuthTokens(undefined)} value="Logout" />
+      </>)
+    }
+
+function Access(){
+  const routes =[
+   
+    {
+        path:"/login",
+        component: Login
+    },
+    {
+        path:"/signup",
+        component: SignUp
+    }
+    ]
+const logout={
+  path:"/logout",
+  component: Logout
+};
+ 
+   if(authTokens===undefined){
+return routes.map((routes, i) => (
+      <RouteWithSubRoutes key={i} {...routes} />
+    ))}else{ return(<><RouteWithSubRoutes {...logout}/></>)}
+
+
+
+
+    // <><RouteWithSubRoutes path="/login" component= {Login} />
+    // <RouteWithSubRoutes path="/signup" component= {SignUp} />
+    // </>):(<><RouteWithSubRoutes path="/logout" component= {Logout} />
+    
+    // </>);
+    
+  }
+
+  
+
+
+  
+
+
+
+
   return (
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <ApolloProvider client={client}>
@@ -31,12 +80,20 @@ export default function App() {
                 <li>
                   <Link  to="/">Home</Link>
                 </li>
-                <li>
+
+{(authTokens===undefined)?(<><li>
                   <Link to="/login">Login</Link>
                 </li>
                 <li>
                   <Link to="/signup">Sign up</Link>
-                </li>
+                </li></>):<li>
+                  <Link to="/logout">Logout</Link>
+                </li>}
+
+                
+
+
+
                 <li>
                   <Link to="/data">Data</Link>
                 </li>
@@ -55,14 +112,15 @@ export default function App() {
               </ul>
             </nav>
 
-            {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
             <Switch>
-              {route.map((route, i) => (
+            {route.map((route, i) => (
                 <RouteWithSubRoutes key={i} {...route} />
               ))}
-
-              <PrivateRoute path="/data" component={Data} />
+            <PrivateRoute path="/data" component={Data} />
+            <Access/>
+              
+              
+              
             </Switch>
           </div>
         </Router>

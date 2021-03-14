@@ -2,9 +2,9 @@ import {  useQuery, gql } from '@apollo/client';
 
 const USERS=gql`
 
-query user {ciao{nome
+query user {test{name
 id
-cognome}}
+surname}}
   `;
 
 export default function Users() {
@@ -13,6 +13,6 @@ export default function Users() {
    if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
     console.log(data)
-   return  data.ciao.map((res)=><p key={res.id}>nome:{res.nome} cognome:{res.cognome}</p>)
+   return  data.test.map((res)=><p key={res.id}>name:{res.name} surname:{res.surname}</p>)
  
 }

@@ -12,8 +12,8 @@ export default function CRYPTO() {
         <p>Name: {result.name} </p>
         
          <p> Value:</p>
-          {result.value.map((x, index) => (
-            <p key={index}>{x}</p>
+          {result.value.map((data, index) => (
+            <p key={index}>{data}</p>
           ))}</div>):""}
         
       </>

@@ -1,5 +1,11 @@
 import { useQuery, gql } from "@apollo/client";
 
+
+
+
+
+
+
 const RECORDS = gql`
   query{records{nome
   id

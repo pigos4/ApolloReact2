@@ -30,8 +30,9 @@ export default function List (){
         const [inputName, setinputName ] =useState({name:"",price:0,barcode:result} );
 //        const [inputPrice, setinputPrice ] =useState(NaN);
 
-data?console.log(data):console.log('we')
+data?console.log(data):console.log('')
         return(<>
+        Add the name and the price:
         <input type="text" onChange={(e)=>setinputName({name:e.target.value,price:inputName.price,barcode:result})} placeholder="Name"></input>
         <input type="number" onChange={(e)=>setinputName({name:inputName.name,price:parseInt(e.target.value),barcode:result})} placeholder="Price"></input>
         <input type="submit" onClick={()=>addInput({ variables: inputName })}></input>
@@ -42,6 +43,8 @@ data?console.log(data):console.log('we')
       }
       return (
         <div className="App">
+          Save your products.
+          To start scann your barcode
           <p>{result ? result : "Scanning..."}</p>
          
           <button onClick={() => setCamera(!camera)}>
@@ -50,7 +53,8 @@ data?console.log(data):console.log('we')
           <div className="container">
             {camera && <Scanner onDetected={onDetected} />}
           </div>
-          <AddRecord/>
+          {(result !==null)?<AddRecord/>:""}
+          
         </div>
       );
     }

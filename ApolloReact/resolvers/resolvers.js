@@ -1,4 +1,4 @@
-const mongo = require('./mongo/mongodb');
+
 const addUserSignUp = require('./mutation/signUpAddUser');
 const dato = require('./dato/dato');
 const crypto = require('./crypto/crypto');
@@ -17,14 +17,14 @@ module.exports = {
         records,
         dato,
         crypto,
-        ciao: () => [{
+        test: () => [{
             "id": 1,
-            "nome": "Daniel",
-            "cognome": "piga"
+            "name": "Test2",
+            "surname": "Test1"
         }, {
             "id": 2,
-            "nome": "jack",
-            "cognome": "boo"
+            "name": "Test2",
+            "surname": "Test2"
         }]
     }
 };

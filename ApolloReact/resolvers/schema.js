@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server');
 const typeDefs = gql`type Query{
-    ciao: [Ciao]
+    test: [Test]
     dato(id: String): Dato
     crypto(symb:String): Crypto
     records: [Records]
@@ -21,10 +21,10 @@ type Crypto {
     name:String
     value : Float
 }
-type Ciao{
+type Test{
     id:ID
-    nome:String,
-    cognome:String
+    name:String,
+    surname:String
 }
 
 

@@ -1,6 +1,6 @@
-const Graph = require('../graphql/query/graphql').default;
+//const Graph = require('../graphql/query/graphql').default;
 
 export default function Home() {
-    return (<>ciao<Graph />
+    return (<>
       </>);
   }
