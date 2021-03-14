@@ -16,10 +16,8 @@ WHERE
       status: "error",
     };
   } else if (userSavedTodatabase.rows[0]) {
-    console.log(args.password);
     let pswDecrypted = encrypt(undefined, userSavedTodatabase.rows[0].password);
     if (pswDecrypted === args.password) {
-      console.log("password giusta");
       return {
         id: userSavedTodatabase.rows[0].id,
         username: userSavedTodatabase.rows[0].username,

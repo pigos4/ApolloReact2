@@ -23,12 +23,7 @@ FROM public."Inputrecords";`);
             let nome = encrypt(undefined, data.name)
             let price = encrypt(undefined, data.price)
             let barcode = encrypt(undefined, data.barcode);
-            console.log({
-                nome,
-                price,
-                barcode,
-                id,
-            })
+            
             return {
                 nome,
                 price,

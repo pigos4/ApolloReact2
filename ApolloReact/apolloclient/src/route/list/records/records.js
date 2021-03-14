@@ -1,4 +1,3 @@
-
 import { useQuery, gql, useMutation } from "@apollo/client";
 import { Redirect } from "react-router-dom";
 
@@ -11,7 +10,7 @@ function Delete(props) {
     }
   `;
 
-  const [deletionStatus, { data}] = useMutation(DELETE_ITEM);
+  const [deletionStatus, { data }] = useMutation(DELETE_ITEM);
   if (data) {
     if (data.deleteitem.status) {
       return (

@@ -8,14 +8,18 @@ export default function CRYPTO() {
   function RenderResults() {
     return (
       <>
-      {(result.name!=="")?(<div className="valueCrypto">
-        <p>Name: {result.name} </p>
-        
-         <p> Value:</p>
-          {result.value.map((data, index) => (
-            <p key={index}>{data}</p>
-          ))}</div>):""}
-        
+        {result.name !== "" ? (
+          <div className="valueCrypto">
+            <p>Name: {result.name} </p>
+
+            <p> Value:</p>
+            {result.value.map((data, index) => (
+              <p key={index}>{data}</p>
+            ))}
+          </div>
+        ) : (
+          ""
+        )}
       </>
     );
   }
@@ -34,7 +38,6 @@ export default function CRYPTO() {
   });
   useEffect(() => {
     if (data) {
-      console.log(data);
       setresult({ name: data.crypto.name, value: [data.crypto.value] });
     }
   }, [data, callQuery]);

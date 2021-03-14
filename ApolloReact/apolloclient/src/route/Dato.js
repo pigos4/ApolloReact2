@@ -73,14 +73,10 @@ export default function Home() {
       <input
         type="button"
         onClick={() => getFields({ variables: { id: inputsUser.id } })}
-        value="submit"
+        value="Submit"
       ></input>
 
-      <input
-        type="button"
-        onClick={() => console.log(data)}
-        value="submitt"
-      ></input>
+      
       {renderDataLoading}
     </>
   );
