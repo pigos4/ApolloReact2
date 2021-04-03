@@ -12,7 +12,7 @@ const server = new ApolloServer({
 });
 
 server.listen({
-  port: process.env.PORT || 4000
+  port: process.env.PORT || 5000
 }).then(({
   url
 }) => {
