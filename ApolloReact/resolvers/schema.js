@@ -33,6 +33,12 @@ type Dato {
   name: String
   info:String
   Description:String
+  father:Int
+  child:[Childs]
+}
+type Childs {
+    ID:Int
+    Name:String
 }
 type Resp{
     response:String

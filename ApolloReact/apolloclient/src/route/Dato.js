@@ -1,86 +1,68 @@
 import React, { useState, useEffect } from "react";
 import { gql, useMutation, useLazyQuery } from "@apollo/client";
 
-export default function Home() {
+export default function Dato() {
+  const [idToRender,setidTorender]=useState("36")
+  const [functionToRender, setfunctionToRender] = useState("");
+  
+  function RenderChild(props) {
+    console.log(props.child, "propsrender child");
+    return props.child.map((x, index) => (
+      <>
+        <input type="button" key={index} value={x.Name}></input>
+        <br></br>
+      </>
+    ));
+  }
+
+  function Funct(prop) {
+    console.log(prop, "prop");
+    return (
+      <>
+        <div>
+          <p>Name:{prop.data.dato.name}</p>
+          <p>Description:{prop.data.dato.Description}</p>
+          <p>Info:{prop.data.dato.info}</p>
+          <p>father{prop.data.dato.father}</p>
+        </div>
+        <RenderChild child={prop.data.dato.child} />
+      </>
+    );
+  }
+
   const DATO = gql`
     query dato($id: String) {
       dato(id: $id) {
         name
         info
         Description
+        father
+        child {
+          ID
+          Name
+        }
       }
     }
   `;
 
   const [getFields, { loading, data }] = useLazyQuery(DATO);
-  const [inputsUser, setinputsUser] = useState({
-    id: "36",
-    name: "",
-    description: "",
-    extraInfo: "",
-    child: [],
-  });
-
-  const [renderDataLoading, setrenderDataLoading] = useState(null);
-  if (renderDataLoading === null)
-    getFields({ variables: { id: inputsUser.id } });
-
   useEffect(() => {
-    loading
-      ? setrenderDataLoading(
-          <>
-            <p>loading</p>
-          </>
-        )
-      : setrenderDataLoading(<></>);
-
     if (data) {
-      setrenderDataLoading(
-        <div>
-          <p>Name:{data.dato.name}</p>
-          <p>Info:{data.dato.info}</p>
-          <p>Description:{data.dato.Description}</p>
-        </div>
-      );
+      console.log(data);
+      setfunctionToRender(<Funct data={data} />);
     }
-  }, [loading, data]);
+  }, [data]);
 
   return (
     <>
       <div>
+        {functionToRender}
         <input
-          type="text"
-          onChange={(e) =>
-            setinputsUser({ ...inputsUser, name: e.target.value })
-          }
-          placeholder="Name"
-        ></input>
-        <input
-          type="text"
-          onChange={(e) =>
-            setinputsUser({ ...inputsUser, description: e.target.value })
-          }
-          placeholder="Descriptio"
-        ></input>
-        <input
-          type="text"
-          onChange={(e) =>
-            setinputsUser({ ...inputsUser, extraInfo: e.target.value })
-          }
-          placeholder="ExtraInfo"
+          type="button"
+          onClick={() => getFields({ variables: { id: idToRender } })}
+          value="Javascript"
         ></input>
       </div>
-      <input
-        type="button"
-        onClick={() => getFields({ variables: { id: inputsUser.id } })}
-        value="Submit"
-      ></input>
-
-      
-      {renderDataLoading}
     </>
   );
 }
-
-
-
