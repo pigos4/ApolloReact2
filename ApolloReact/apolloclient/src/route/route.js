@@ -2,7 +2,7 @@ const Homes = require('../route/Home').default
 const Login = require('../route/Login').default;
 const SignUp = require ('./Signup').default;
 const Crypto = require ('./Crypto').default;
-const Dato = require ('./Dato').default;
+const Dato = require ('./Dato/Dato.js').default;
 const List = require ('./list/List').default;
 
 const Records = require ('./list/records/records.js').default;

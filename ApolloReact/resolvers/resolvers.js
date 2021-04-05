@@ -11,7 +11,7 @@ module.exports = {
         addUser: addUserSignUp,
         loginUser: login,
         deleteitem: deleteItem
-
+        
     },
     Query: {
         records,

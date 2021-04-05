@@ -57,6 +57,9 @@ type DeleteItem{
 
 type Mutation{addUser(name: String, username: String, password: String): Resp,
 
+addNewTopic(name: String
+  info:String
+  Description:String): Res,
 addInput(name: String, price: Int, barcode: String): Res,
 loginUser(username: String, password: String): UserLogin,
 deleteitem(idd: String): DeleteItem}
